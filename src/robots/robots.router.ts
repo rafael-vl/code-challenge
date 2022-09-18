@@ -12,28 +12,28 @@ const robotRepository = new RobotRepositoryPostgres();
 const robotService = new RobotsService(robotRepository);
 
 robotsRouter.get("/:id", async (req: Request, res: Response) => {
-    const id: number = parseInt(req.params.id, 0);
-    const robot: RobotDto | null = await robotService.find(id);
-    if (robot) {
-      return res.status(200).json(robot);
-    }
-    res.status(404).json({ 
-      message: 'Robot not found'
-    });
+  const id: number = parseInt(req.params.id, 0);
+  const robot: RobotDto | null = await robotService.find(id);
+  if (robot) {
+    return res.status(200).json(robot);
+  }
+  res.status(404).json({
+    message: "Robot not found",
+  });
 });
 
 robotsRouter.post("/", async (req: Request, res: Response) => {
-    const robot: Robot = req.body;
-    const result = schemas.newRobot.validate(robot);
-    const { error } = result;
-    const valid = error == null;
-    if (!valid) {
-      res.status(422).json({
-        message: 'Invalid request',
-        data: error.message
-      });
-    } else {
-      const newRobot = await robotService.create(robot);
-      res.status(200).json(newRobot);
-    }
+  const robot: Robot = req.body;
+  const result = schemas.newRobot.validate(robot);
+  const { error } = result;
+  const valid = error == null;
+  if (!valid) {
+    res.status(422).json({
+      message: "Invalid request",
+      data: error.message,
+    });
+  } else {
+    const newRobot = await robotService.create(robot);
+    res.status(200).json(newRobot);
+  }
 });
