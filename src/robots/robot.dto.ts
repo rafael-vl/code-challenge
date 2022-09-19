@@ -6,4 +6,4 @@ export type RobotDto = {
   manufacturedBy?: string;
   createdAt?: Date;
   updatedAt?: Date;
-} | null;
+};

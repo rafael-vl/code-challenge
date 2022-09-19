@@ -8,6 +8,6 @@ export class RobotRepositoryPostgres implements RobotRepository {
   }
 
   async create(newRobot: RobotDto): Promise<RobotDto> {
-    return await Robot.create({ ...newRobot });
+    return Robot.create(newRobot);
   }
 }

@@ -1,9 +1,25 @@
+## Prerequisites
+
+### Install dependencies
+
+```
+yarn install
+```
+
+### Create .env file (see .env.example)
+
+### Run migrations
+
+```
+npx sequelize-cli db:migrate
+```
+
 ## Run app
 
 ### Start app
 
 ```
-npm run dev
+yarn dev
 ```
 
 ## API
@@ -40,4 +56,10 @@ npx sequelize-cli db:migrate
 
 ```
 npx sequelize-cli db:migrate:undo
+```
+
+## Run tests
+
+```
+yarn test
 ```

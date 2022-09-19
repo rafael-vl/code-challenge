@@ -14,12 +14,13 @@ const robotService = new RobotsService(robotRepository);
 robotsRouter.get("/:id", async (req: Request, res: Response) => {
   const id: number = parseInt(req.params.id, 0);
   const robot: RobotDto | null = await robotService.find(id);
-  if (robot) {
-    return res.status(200).json(robot);
+  if (!robot) {
+    return res.status(404).json({
+      message: "Robot not found",
+    });
   }
-  res.status(404).json({
-    message: "Robot not found",
-  });
+
+  return res.status(200).json(robot);
 });
 
 robotsRouter.post("/", async (req: Request, res: Response) => {
@@ -28,12 +29,11 @@ robotsRouter.post("/", async (req: Request, res: Response) => {
   const { error } = result;
   const valid = error == null;
   if (!valid) {
-    res.status(422).json({
+    return res.status(422).json({
       message: "Invalid request",
       data: error.message,
     });
-  } else {
-    const newRobot = await robotService.create(robot);
-    res.status(200).json(newRobot);
   }
+  const newRobot: RobotDto = await robotService.create(robot);
+  return res.status(200).json(newRobot);
 });

@@ -8,6 +8,7 @@ import connection from "./db/connection";
 dotenv.config();
 
 if (!process.env.PORT) {
+  console.error("PORT env variable was not defined");
   process.exit(1);
 }
 

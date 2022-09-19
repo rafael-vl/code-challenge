@@ -15,7 +15,8 @@ module.exports = {
       },
       numberOfArms: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        field: 'number_of_arms'
       },
       model: {
         allowNull: false,
@@ -23,15 +24,18 @@ module.exports = {
       },
       manufacturedBy: {
         allowNull: true,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        field: 'manufactured_by'
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        field: 'created_at'
       },
       updatedAt: {
         allowNull: true,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        field: 'updated_at'
       }
     });
   },
